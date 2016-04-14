@@ -62,24 +62,6 @@ public class CasesAdapter extends BaseAdapter{
 
         final TextView numberOfPaints = (TextView) targetView.findViewById(R.id.number_of_paints);
 
-        ImageButton addPaintButton = (ImageButton) targetView.findViewById(R.id.add_paitn_button);
-        addPaintButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int n = Integer.parseInt(numberOfPaints.getText().toString());
-                n++;
-                numberOfPaints.setText(n+"");
-            }
-        });
-
-        ImageButton removePaintButton = (ImageButton) targetView.findViewById(R.id.remove_paint_button);
-        removePaintButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int n = Integer.parseInt(numberOfPaints.getText().toString());
-                n--;
-                numberOfPaints.setText(n+"");
-            }
-        });
+        numberOfPaints.setText("number of paints: "+aCase.getNumberOfPaints());
     }
 }

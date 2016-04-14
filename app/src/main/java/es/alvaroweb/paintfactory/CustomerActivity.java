@@ -2,6 +2,7 @@ package es.alvaroweb.paintfactory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -45,16 +46,16 @@ public class CustomerActivity extends AppCompatActivity {
         aCase = CaseSet.getInstance().getCase(caseIndex);
     }
 
-    public void clickAddButton(View view){
+    public void clickAddButton(View view) {
         aCase.getCustomers().add(new Customer(new ArrayList<Paint>()));
         customerAdapter.notifyDataSetChanged();
     }
 
-    public void clickCheckButton(View view){
+    public void clickCheckButton(View view) {
         onBackPressed();
     }
 
-    private AdapterView.OnItemClickListener onItemClick(){
+    private AdapterView.OnItemClickListener onItemClick() {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,12 +73,18 @@ public class CustomerActivity extends AppCompatActivity {
     private AdapterView.OnItemLongClickListener onItemLongClick() {
         return new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
-                //TODO: long clikck customer
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                Snackbar.make(view, "Do you want to delete it?", Snackbar.LENGTH_LONG)
+                        .setAction("do it!", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                aCase.getCustomers().remove(position);
+                                customerAdapter.notifyDataSetChanged();
+                            }
+                        }).show();
+                return true;
             }
         };
     }
-
 
 }

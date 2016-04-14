@@ -6,6 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+
+import java.io.IOException;
+
+import es.alvaroweb.paintfactory.comunication.CaseSet;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -16,12 +21,17 @@ public class ResultActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView resultText = (TextView) findViewById(R.id.result_text);
+        try {
+            resultText.setText(CaseSet.getInstance().generateResults());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ResultActivity.this.finish();
             }
         });
     }

@@ -12,4 +12,12 @@
     tools:context="es.alvaroweb.paintfactory.ResultActivity"
     tools:showIn="@layout/activity_result">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="New Text"
+        android:id="@+id/result_text"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package es.alvaroweb.paintfactory;
 
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -22,6 +24,7 @@ import es.alvaroweb.paintfactory.comunication.CaseSet;
 
 public class MainActivity extends AppCompatActivity {
     CasesAdapter casesAdapter;
+    CaseSet caseSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         casesAdapter = new CasesAdapter(this);
+        caseSet = CaseSet.getInstance();
         ListView casesListView = (ListView) findViewById(R.id.cases_grid_view);
         casesListView.setAdapter(casesAdapter);
 
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("do it!", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                CaseSet.getInstance().removeCase(position);
+                                caseSet.removeCase(position);
                                 casesAdapter.notifyDataSetChanged();
                             }
                         }).show();
@@ -60,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "pos:"+position, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, CustomerActivity.class);
                 intent.putExtra(Arguments.CASE_ARG, position); //TODO
                 startActivity(intent);
@@ -70,8 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
     /** this only adds a empty case*/
     public void clickAddButton(View view){
-        CaseSet.getInstance().addCase();
-        casesAdapter.notifyDataSetChanged();
+        CaseDialog caseDialog = new CaseDialog(this);
+        caseDialog.show();
+        caseDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                casesAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public void clickCheckButton(View view){
