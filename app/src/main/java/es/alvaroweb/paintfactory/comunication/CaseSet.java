@@ -33,4 +33,8 @@ public class CaseSet {
     public void setCases(List<Case> cases) {
         this.cases = cases;
     }
+
+    public void removeCase(int position) {
+        cases.remove(position);
+    }
 }

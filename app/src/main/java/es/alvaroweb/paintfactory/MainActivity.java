@@ -38,13 +38,20 @@ public class MainActivity extends AppCompatActivity {
         casesListView.setOnItemLongClickListener(onItemLongClick());
 
     }
-
+    /** Long click on item will delete it*/
     private AdapterView.OnItemLongClickListener onItemLongClick() {
         return new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "hei", Toast.LENGTH_LONG).show();
-                return false;
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                Snackbar.make(view, "Do you want to delete it?", Snackbar.LENGTH_LONG)
+                        .setAction("do it!", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CaseSet.getInstance().removeCase(position);
+                                casesAdapter.notifyDataSetChanged();
+                            }
+                        }).show();
+                return true;
             }
         };
     }
@@ -68,11 +75,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickCheckButton(View view){
-        Snackbar.make(view, "Are you sure?", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Are you ready to see the results?", Snackbar.LENGTH_LONG)
                 .setAction("do it!", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                        startActivity(intent);
                     }
                 }).show();
     }

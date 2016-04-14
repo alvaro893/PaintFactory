@@ -51,7 +51,7 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
     public void clickCheckButton(View view){
-
+        onBackPressed();
     }
 
     private AdapterView.OnItemClickListener onItemClick(){
