@@ -16,7 +16,6 @@ import es.alvaroweb.paintfactory.comunication.CaseSet;
  * Created by Alvaro on 14/04/2016.
  */
 public class CaseDialog extends Dialog {
-    AlertDialog.Builder builder;
     Activity activity;
     private int numberOfPaints;
 
@@ -24,7 +23,7 @@ public class CaseDialog extends Dialog {
         super(activity);
         this.activity = activity;
         numberOfPaints = 1;
-        //builder.setTitle("Add a number of paints");
+        setTitle("PAINT");
     }
 
     @Override

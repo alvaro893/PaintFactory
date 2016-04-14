@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Case N"
+            android:text="Case"
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/case_number"
             android:layout_gravity="center"
@@ -32,8 +32,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/add_paitn_button"
-                android:src="@drawable/ic_add_white_24dp"
+                android:id="@+id/remove_paint_button"
+                android:src="@drawable/ic_remove_white_24dp"
                 android:background="@drawable/add_paint_button"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -50,9 +50,10 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/remove_paint_button"
-                android:src="@drawable/ic_remove_white_24dp"
+                android:id="@+id/add_paitn_button"
+                android:src="@drawable/ic_add_white_24dp"
                 android:background="@drawable/add_paint_button"/>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -60,6 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="OK"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
         android:id="@+id/dialog_button"/>
 
 </LinearLayout>

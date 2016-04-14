@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">PaintFactory</string>
+    <string name="app_name">Cases</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_color">ColorActivity</string>
-    <string name="title_activity_customer">CustomerActivity</string>
-    <string name="title_activity_color_customer">ColorCustomerActivity</string>
-    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_customer">Customers</string>
+    <string name="title_activity_color_customer">Customer Paint</string>
+    <string name="title_activity_result">Results</string>
 </resources>
